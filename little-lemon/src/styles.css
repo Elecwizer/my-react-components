@@ -1,0 +1,518 @@
+/* Base Grid Layout */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0; /* Remove margin to use full width */
+    padding: 0; /* Remove padding to ensure full use of width */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12 equal fluid columns */
+    grid-template-rows: auto; /* Automatically adjust rows based on content */
+    grid-gap: 20px; /* Space between columns and rows */
+    height: 100vh; /* Ensures full viewport height */
+    box-sizing: border-box;
+    overflow: auto; /* Allows scrolling */
+}
+
+/* Sections now need to specify their row span if needed */
+header, .specials, .testimonials, .about, footer {
+    grid-column: 1 / -1; /* Spans all columns */
+}
+
+/* Header Section */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+header .logo img {
+    max-width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333; /* Keep text color constant */
+    font-size: 1.1em;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #333; /* Ensure text color doesn't change on hover */
+}
+
+/* Keep the hover underline effect for the entire element */
+nav ul li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #f4a261;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
+}
+
+nav ul li:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: #f7f7f7;
+    text-align: left;
+    gap: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 2em;
+    color: #f4a261;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    font-size: 1.2em;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #e76f51;
+}
+
+.hero img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Specials Section */
+.specials {
+    background-color: #f7f7f7;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.specials h2 {
+    font-size: 2.5em;
+    color: #333;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.specials button {
+    font-size: 1.1em;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.specials button:hover {
+    background-color: #e76f51;
+}
+
+/* Special item cards container */
+.special-item-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+    margin-top: 30px;
+}
+
+/* Special item card styles */
+.special-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    margin: 10px;
+    transition: transform 0.2s ease-in-out; /* Animation effect */
+}
+
+.special-item:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+}
+
+.special-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.special-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+.special-item .price {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #f4a261;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.special-item p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.special-item button {
+    font-size: 1em;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.special-item button:hover {
+    background-color: #e76f51;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 40px;
+    width: 100%; /* Ensure the title spans the full width */
+}
+
+/* Testimonial card container */
+.testimonial-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+
+/* Testimonial card styles */
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px; /* Card width */
+    margin: 10px;
+    transition: transform 0.2s ease-in-out; /* Animation effect */
+}
+
+.testimonial:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+}
+
+.testimonial p:first-child {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f4a261;
+    margin-bottom: 10px;
+}
+
+.testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.testimonial h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.testimonial p:last-child {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fff5db;
+    padding: 40px 20px;
+    gap: 40px; /* Space between the text and image sections */
+}
+
+/* Left part: Title, subtitle, and paragraph (Stacked vertically) */
+.about .about-text {
+    flex: 1; /* Take up 50% of the available space */
+    display: flex;
+    flex-direction: column; /* Ensures title, subtitle, and paragraph are stacked vertically */
+    justify-content: flex-start;
+}
+
+.about h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.about h3 {
+    font-size: 1.8em;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    color: #555;
+    margin-bottom: 20px; /* Adds space between the paragraph and the image section */
+}
+
+/* Right part: Stacked images (two images on top of each other) */
+.about .about-images {
+    flex: 1; /* Take up the remaining space (50%) */
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    gap: 20px; /* Adds space between the two images */
+}
+
+.about .about-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Footer Section */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    background-color: #f4a261;
+    color: #fff;
+    padding: 40px 20px;
+    gap: 40px; /* Adds space between the columns */
+}
+
+/* Logo Section */
+.logo-secondary img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Footer Navigation, Contact, and Social Media Sections */
+.footer-navigation, .contact, .social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+    gap: 10px; /* Space between each item */
+}
+
+/* Doormat Navigation Specific Styling */
+.footer-navigation nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items vertically like other sections */
+}
+
+/* Footer Navigation Heading */
+.footer-navigation h3, .contact h3, .social-media h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* Footer Navigation Links */
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Force items to stack vertically */
+    gap: 10px; /* Add space between the links */
+}
+
+.footer-navigation ul li {
+    margin-bottom: 10px;
+}
+
+.footer-navigation a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent (white) */
+    font-size: 1.1em;
+    padding: 5px 0;
+}
+
+/* Hover Effect for Links */
+.footer-navigation a:hover {
+    color: #eaeaea; /* Slight change on hover */
+}
+
+/* Contact and Social Media Links */
+.contact p, .social-media p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+/* Responsive Styles */
+
+/* Tablets (up to 768px) */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: repeat(6, 1fr); /* Adjust grid for smaller screens */
+    }
+
+    header, .specials, .testimonials, .about, footer {
+        grid-column: 1 / -1; /* Spans all columns */
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero h2 {
+        font-size: 1.5em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .special-item, .testimonial {
+        width: 100%;
+        max-width: 300px; /* Adjust card width for smaller screens */
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about .about-images {
+        flex-direction: row; /* Stack images horizontally */
+        flex-wrap: wrap;
+    }
+
+    .about .about-images img {
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Mobile (up to 480px) */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero h2 {
+        font-size: 1.2em;
+    }
+
+    .hero p {
+        font-size: 0.9em;
+    }
+
+    .special-item, .testimonial {
+        width: 100%;
+        max-width: 100%; /* Full width cards for mobile */
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about .about-images {
+        flex-direction: column; /* Stack images vertically */
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}

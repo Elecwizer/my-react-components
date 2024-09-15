@@ -7,12 +7,18 @@ import MarioAndAdrian from '../images/MarioandAdrian.jpg';
 function About() {
   return (
     <section className="about">
-      <h2>Little Lemon</h2>
-      <h3>Chicago</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut lectus purus. Nulla facilisi.</p>
+      {/* Left side: Text content */}
+      <div className="about-text">
+        <h2>Little Lemon</h2>
+        <h3>Chicago</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut lectus purus. Nulla facilisi.</p>
+      </div>
 
-      <img src={Restaurant} alt="Restaurant Interior" />
-      <img src={MarioAndAdrian} alt="Chefs in Action" />
+      {/* Right side: Stacked images */}
+      <div className="about-images">
+        <img src={Restaurant} alt="Restaurant Interior" />
+        <img src={MarioAndAdrian} alt="Chefs in Action" />
+      </div>
     </section>
   );
 }
