@@ -70,7 +70,7 @@ nav ul li::after {
     position: absolute;
     width: 0;
     height: 3px;
-    background-color: #f4a261;
+    background-color: #F4CE14;
     left: 0;
     bottom: 0;
     transition: width 0.3s ease;
@@ -86,34 +86,34 @@ nav ul li:hover::after {
     align-items: center;
     justify-content: space-between;
     padding: 50px 20px;
-    background-color: #f7f7f7;
+    background-color: #495E57; /* Updated background color */
     text-align: left;
     gap: 20px;
 }
 
 .hero h1 {
     font-size: 3.5em;
-    color: #333;
+    color: #fff; /* Updated text color */
     margin-bottom: 10px;
 }
 
 .hero h2 {
     font-size: 2em;
-    color: #f4a261;
+    color: #F4CE14; /* Updated text color */
     margin-bottom: 20px;
 }
 
 .hero p {
     font-size: 1.2em;
     line-height: 1.6em;
-    color: #666;
+    color: #ddd; /* Updated text color */
     margin-bottom: 30px;
 }
 
 .hero button {
     font-size: 1.2em;
-    background-color: #f4a261;
-    color: #fff;
+    background-color: #F4CE14; /* Updated button background color */
+    color: #495E57; /* Updated button text color */
     border: none;
     border-radius: 8px;
     padding: 15px 30px;
@@ -122,7 +122,7 @@ nav ul li:hover::after {
 }
 
 .hero button:hover {
-    background-color: #e76f51;
+    background-color: #F4CE14; /* Ensure hover color does not change */
 }
 
 .hero img {
@@ -140,15 +140,15 @@ nav ul li:hover::after {
 
 .specials h2 {
     font-size: 2.5em;
-    color: #333;
+    color: #495E57; /* Updated text color */
     display: inline-block;
     margin-right: 20px;
 }
 
 .specials button {
     font-size: 1.1em;
-    background-color: #f4a261;
-    color: #fff;
+    background-color: #F4CE14; /* Updated button background color */
+    color: #495E57; /* Updated button text color */
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
@@ -157,7 +157,7 @@ nav ul li:hover::after {
 }
 
 .specials button:hover {
-    background-color: #e76f51;
+    background-color: #F4CE14; /* Ensure hover color does not change */
 }
 
 /* Special item cards container */
@@ -202,7 +202,7 @@ nav ul li:hover::after {
 .special-item .price {
     font-size: 1.3em;
     font-weight: bold;
-    color: #f4a261;
+    color: #F4CE14; /* Updated text color */
     display: inline-block;
     margin-left: 10px;
 }
@@ -217,8 +217,8 @@ nav ul li:hover::after {
 
 .special-item button {
     font-size: 1em;
-    background-color: #f4a261;
-    color: #fff;
+    background-color: #495E57; /* Updated button background color */
+    color: #fff; /* Updated button text color */
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
@@ -227,21 +227,20 @@ nav ul li:hover::after {
 }
 
 .special-item button:hover {
-    background-color: #e76f51;
+    background-color: #495E57; /* Ensure hover color does not change */
 }
 
 /* Testimonials Section */
 .testimonials {
-    background-color: #f9f9f9;
+    background-color: #495E57; /* Updated background color */
     padding: 40px 20px;
     text-align: center;
 }
 
 .testimonials h2 {
     font-size: 2.5em;
-    color: #333;
+    color: #F4CE14; /* Updated text color */
     margin-bottom: 40px;
-    width: 100%; /* Ensure the title spans the full width */
 }
 
 /* Testimonial card container */
@@ -272,7 +271,7 @@ nav ul li:hover::after {
 .testimonial p:first-child {
     font-size: 1.5em;
     font-weight: bold;
-    color: #f4a261;
+    color: #F4CE14; /* Updated text color */
     margin-bottom: 10px;
 }
 
@@ -286,7 +285,7 @@ nav ul li:hover::after {
 
 .testimonial h3 {
     font-size: 1.2em;
-    color: #333;
+    color: #495E57; /* Updated text color */
     margin-bottom: 10px;
 }
 
@@ -354,8 +353,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items at the top */
-    background-color: #f4a261;
-    color: #fff;
+    background-color: #F4CE14; /* Updated background color */
+    color: #495E57; /* Updated text color */
     padding: 40px 20px;
     gap: 40px; /* Adds space between the columns */
 }
@@ -403,14 +402,14 @@ footer {
 
 .footer-navigation a {
     text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit color from parent (white) */
+    color: #495E57; /* Updated link color */
     font-size: 1.1em;
     padding: 5px 0;
 }
 
 /* Hover Effect for Links */
 .footer-navigation a:hover {
-    color: #eaeaea; /* Slight change on hover */
+    color: #3e4e47; /* Slight change on hover */
 }
 
 /* Contact and Social Media Links */
