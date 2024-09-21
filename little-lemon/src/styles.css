@@ -1,20 +1,13 @@
-/* Base Grid Layout */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0; /* Remove margin to use full width */
     padding: 0; /* Remove padding to ensure full use of width */
-    display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12 equal fluid columns */
-    grid-template-rows: auto; /* Automatically adjust rows based on content */
-    grid-gap: 20px; /* Space between columns and rows */
-    height: 100vh; /* Ensures full viewport height */
+    display: flex;
+    flex-direction: column; /* Vertically stack sections */
+    gap: 20px; /* Space between sections */
+    min-height: 100vh; /* Ensures full viewport height */
     box-sizing: border-box;
     overflow: auto; /* Allows scrolling */
-}
-
-/* Sections now need to specify their row span if needed */
-header, .specials, .testimonials, .about, footer {
-    grid-column: 1 / -1; /* Spans all columns */
 }
 
 /* Header Section */
