@@ -12,12 +12,17 @@ body {
 
 /* Header Section */
 header {
+    position: fixed; /* Keeps the header fixed at the top */
+    top: 0; /* Aligns the header to the top of the viewport */
+    left: 0; /* Aligns the header to the left of the viewport */
+    width: 100%; /* Ensures the header spans the full width of the screen */
+    z-index: 1000; /* Ensures the header is above other elements */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* Same background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for better visibility */
 }
 
 /* Logo */
@@ -31,6 +36,11 @@ header .logo img {
 nav {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center the navigation within the header */
+    width: 100%; /* Ensure it spans only the available space */
+    max-width: 1200px; /* Optional: Constrain the maximum width for better responsiveness */
+    margin: 0 auto; /* Center align the nav within the header */
+    padding: 0 20px; /* Add some padding for spacing from screen edges */
 }
 
 nav ul {
