@@ -571,13 +571,13 @@ footer {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     width: 100%;
   }
-  
+
   /* Button Hover Effect */
   .reservation-form button[type="submit"]:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
     transform: scale(1.05); /* Slightly enlarge the button */
   }
-  
+
   /* Accessibility */
   .reservation-form button[type="submit"]:focus {
     outline: 2px solid #F4CE14;

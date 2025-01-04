@@ -1,0 +1,89 @@
+/* Styles scoped to the BookingForm component */
+
+/* Form Styling */
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: #495E57;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  width: 90%; /* Adjust to use more of the available screen width */
+  margin: auto; /* Center the form horizontally */
+}
+
+/* Label Styling */
+.reservation-form label {
+  font-size: 14px;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+/* Input and Select Styling */
+.reservation-form input,
+.reservation-form select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #495E57;
+}
+
+/* Button Styling */
+.reservation-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #495E57;
+  background-color: #F4CE14;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  width: 100%;
+}
+
+/* Button Hover Effect */
+.reservation-button:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* Accessibility */
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-button:focus {
+  outline: 2px solid #F4CE14;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+
+/* For larger screens, center the form and limit its width */
+@media (min-width: 768px) {
+  .reservation-form {
+    max-width: 600px;
+    padding: 30px;
+  }
+}
+
+/* For smaller screens, ensure full-width usage */
+@media (max-width: 767px) {
+  .reservation-form {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Adjust font sizes for smaller screens */
+  .reservation-form label,
+  .reservation-button {
+    font-size: 12px;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const BookingForm = ({ availableTimes = [], dispatch }) => {
+const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
@@ -14,9 +14,33 @@ const BookingForm = ({ availableTimes = [], dispatch }) => {
     }
   }, [availableTimes, time]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form submitted:", { date, time, guests, occasion });
+    const formData = {
+      date,
+      time,
+      guests,
+      occasion,
+    };
+
+    try {
+      if (typeof submitAPI === "undefined") {
+        throw new Error("submitAPI is not defined!");
+      }
+      const isSubmitted = submitAPI(formData);
+      if (isSubmitted) {
+        console.log("Form submitted successfully!");
+        // Reset the form
+        setDate("");
+        setTime("");
+        setGuests(1);
+        setOccasion("None");
+      } else {
+        console.error("Form submission failed!");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleDateChange = (e) => {
@@ -83,6 +107,7 @@ const BookingForm = ({ availableTimes = [], dispatch }) => {
 BookingForm.propTypes = {
   availableTimes: PropTypes.arrayOf(PropTypes.string),
   dispatch: PropTypes.func.isRequired,
+  submitAPI: PropTypes.func.isRequired,
 };
 
 export default BookingForm;
