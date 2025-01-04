@@ -9,7 +9,7 @@ import WeirdLady from '../images/WeirdLady.png';
 function Testimonials() {
   return (
     <section className="testimonials">
-      <h2>Testimonials</h2> {/* Title above the cards */}
+      <h2>Testimonials</h2>
       <div className="testimonial-cards">
         <article className="testimonial">
           <p>10/10</p>

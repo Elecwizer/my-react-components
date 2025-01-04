@@ -8,7 +8,6 @@ function Header() {
   return (
     <header>
       <div className="logo">
-        {/* Use the imported logo image */}
         <img src={YellowLemonTitle} alt="Little Lemon Logo" />
       </div>
       <Nav />
