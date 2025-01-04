@@ -1,77 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-const BookingForm = () => {
-  // State variables for form fields
+const BookingForm = ({ availableTimes = [], dispatch }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState("Birthday");
+  const [occasion, setOccasion] = useState("None");
 
-  // State for available times
-  const [availableTimes, setAvailableTimes] = useState([
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ]);
+  // Reset time selection if availableTimes changes
+  useEffect(() => {
+    if (availableTimes.length > 0 && !availableTimes.includes(time)) {
+      setTime(availableTimes[0]); // Set to the first available time
+    }
+  }, [availableTimes, time]);
 
-  // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Form submitted:", { date, time, guests, occasion });
   };
 
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+
+    if (dispatch) {
+      dispatch({ type: "UPDATE_DATE", payload: selectedDate });
+    } else {
+      console.error("Dispatch function is undefined!");
+    }
+  };
+
   return (
     <form className="reservation-form" onSubmit={handleSubmit}>
+      <label htmlFor="name">Full name</label>
+      <input type="text" id="name" />
+
+      <label htmlFor="email">Email</label>
+      <input type="email" id="email" />
+
+      <label htmlFor="phone">Phone number</label>
+      <input type="tel" id="phone" />
+
       <label htmlFor="date">Choose date</label>
-      <input
-        type="date"
-        id="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
+      <input type="date" id="date" value={date} onChange={handleDateChange} />
 
       <label htmlFor="time">Choose time</label>
-      <select
-        id="time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-      >
-        {availableTimes.map((availableTime) => (
-          <option key={availableTime} value={availableTime}>
-            {availableTime}
-          </option>
-        ))}
+      <select id="time" value={time} onChange={(e) => setTime(e.target.value)}>
+        {availableTimes.length > 0 ? (
+          availableTimes.map((time) => (
+            <option key={time} value={time}>
+              {time}
+            </option>
+          ))
+        ) : (
+          <option value="">No available times</option>
+        )}
       </select>
 
       <label htmlFor="guests">Number of guests</label>
       <input
         type="number"
         id="guests"
-        placeholder="1"
         min="1"
         max="10"
         value={guests}
-        onChange={(e) => setGuests(e.target.value)}
+        onChange={(e) => setGuests(Number(e.target.value))}
       />
 
       <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-      >
-        <option>Birthday</option>
-        <option>Anniversary</option>
+      <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
+        <option value="Birthday">Birthday</option>
+        <option value="Anniversary">Anniversary</option>
+        <option value="Graduation">Graduation</option>
+        <option value="None">None</option>
       </select>
 
-      <button className="reservation-button" type="submit">
-        Make Your Reservation
-      </button>
+      <button type="submit">Make Your Reservation</button>
     </form>
   );
+};
+
+BookingForm.propTypes = {
+  availableTimes: PropTypes.arrayOf(PropTypes.string),
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default BookingForm;

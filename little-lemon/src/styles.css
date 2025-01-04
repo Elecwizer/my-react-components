@@ -559,32 +559,30 @@ footer {
 }
 
 /* Button Styling */
-.reservation-button {
-  padding: 15px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #495E57;
-  background-color: #F4CE14;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  width: 100%;
-}
-
-/* Button Hover Effect */
-.reservation-button:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05);
-}
-
-/* Accessibility */
-.reservation-form input:focus,
-.reservation-form select:focus,
-.reservation-button:focus {
-  outline: 2px solid #F4CE14;
-  outline-offset: 2px;
-}
+.reservation-form button[type="submit"] {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #495E57; /* Font color */
+    background-color: #F4CE14; /* Background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    width: 100%;
+  }
+  
+  /* Button Hover Effect */
+  .reservation-form button[type="submit"]:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  
+  /* Accessibility */
+  .reservation-form button[type="submit"]:focus {
+    outline: 2px solid #F4CE14;
+    outline-offset: 2px;
+  }
 
 /* Responsive Design */
 
