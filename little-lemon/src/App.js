@@ -1,23 +1,28 @@
-import "./styles.css";
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
-import BookingForm from './components/BookingForm'; // Import BookingForm
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BookingForm from './components/BookingForm';
+import ConfirmedBooking from './components/ConfirmedBooking';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom"; // Add useNavigate here
+
+// Declare fetchAPI and submitAPI as global variables to satisfy ESLint
+/* global fetchAPI, submitAPI */
 
 // Mock API functions (fallback if the script doesn't load)
 if (typeof fetchAPI === "undefined" || typeof submitAPI === "undefined") {
   console.warn("API functions are not defined. Using mock functions.");
   global.fetchAPI = function (date) {
+    const day = date.getDate(); // Get the day of the month
     let result = [];
-    let random = Math.random(); // Use a simple random function for mocking
     for (let i = 17; i <= 23; i++) {
-      if (random < 0.5) {
+      if (day % 2 === 0) { // Even days have more times
         result.push(i + ":00");
-      }
-      if (random < 0.5) {
         result.push(i + ":30");
+      } else { // Odd days have fewer times
+        if (i % 2 === 0) {
+          result.push(i + ":00");
+        }
       }
     }
     return result;
@@ -43,6 +48,8 @@ const updateTimes = (state, action) => {
       const selectedDate = new Date(action.payload); // Get the selected date
       const availableTimes = fetchAPI(selectedDate); // Fetch available times
       return availableTimes; // Return the fetched times
+    case "REMOVE_TIME":
+      return state.filter((time) => time !== action.payload); // Remove the reserved time
     default:
       return state;
   }
@@ -51,6 +58,8 @@ const updateTimes = (state, action) => {
 // Wrapper component for BookingForm to provide required props
 const BookingFormWrapper = () => {
   const [availableTimes, dispatch] = useReducer(updateTimes, []);
+  const [reservedTimes, setReservedTimes] = useState([]); // Track reserved times
+  const navigate = useNavigate(); // useNavigate is now inside a child component of <Router>
 
   // Initialize available times when the component mounts
   useEffect(() => {
@@ -61,7 +70,21 @@ const BookingFormWrapper = () => {
     initialize();
   }, []);
 
-  return <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitAPI={submitAPI} />;
+  // Function to handle form submission
+  const submitForm = async (formData) => {
+    const isSubmitted = submitAPI(formData);
+    if (isSubmitted) {
+      // Add the reserved time to the list of reserved times
+      setReservedTimes((prev) => [...prev, formData.time]);
+      // Remove the reserved time from available times
+      dispatch({ type: "REMOVE_TIME", payload: formData.time });
+      navigate("/booking-confirmed"); // Navigate to the confirmation page
+    } else {
+      console.error("Form submission failed!");
+    }
+  };
+
+  return <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitForm={submitForm} />;
 };
 
 function App() {
@@ -82,6 +105,9 @@ function App() {
             </>
           }
         />
+
+        {/* Booking confirmation route */}
+        <Route path="/booking-confirmed" element={<><ConfirmedBooking /><Footer /></>} />
 
         {/* Other routes */}
         <Route path="/about" element={<></>} />

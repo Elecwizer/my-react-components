@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
+// Declare submitAPI as a global variable to satisfy ESLint
+/* global submitAPI */
+
+const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("None");
+  const navigate = useNavigate();
 
   // Reset time selection if availableTimes changes
   useEffect(() => {
@@ -23,24 +28,8 @@ const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
       occasion,
     };
 
-    try {
-      if (typeof submitAPI === "undefined") {
-        throw new Error("submitAPI is not defined!");
-      }
-      const isSubmitted = submitAPI(formData);
-      if (isSubmitted) {
-        console.log("Form submitted successfully!");
-        // Reset the form
-        setDate("");
-        setTime("");
-        setGuests(1);
-        setOccasion("None");
-      } else {
-        console.error("Form submission failed!");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+    // Call the submitForm function
+    submitForm(formData);
   };
 
   const handleDateChange = (e) => {
@@ -57,19 +46,19 @@ const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
   return (
     <form className="reservation-form" onSubmit={handleSubmit}>
       <label htmlFor="name">Full name</label>
-      <input type="text" id="name" />
+      <input type="text" id="name" required />
 
       <label htmlFor="email">Email</label>
-      <input type="email" id="email" />
+      <input type="email" id="email" required />
 
       <label htmlFor="phone">Phone number</label>
-      <input type="tel" id="phone" />
+      <input type="tel" id="phone" required />
 
       <label htmlFor="date">Choose date</label>
-      <input type="date" id="date" value={date} onChange={handleDateChange} />
+      <input type="date" id="date" value={date} onChange={handleDateChange} required />
 
       <label htmlFor="time">Choose time</label>
-      <select id="time" value={time} onChange={(e) => setTime(e.target.value)}>
+      <select id="time" value={time} onChange={(e) => setTime(e.target.value)} required>
         {availableTimes.length > 0 ? (
           availableTimes.map((time) => (
             <option key={time} value={time}>
@@ -89,10 +78,11 @@ const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
         max="10"
         value={guests}
         onChange={(e) => setGuests(Number(e.target.value))}
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
-      <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
+      <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)} required>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
         <option value="Graduation">Graduation</option>
@@ -107,7 +97,7 @@ const BookingForm = ({ availableTimes = [], dispatch, submitAPI }) => {
 BookingForm.propTypes = {
   availableTimes: PropTypes.arrayOf(PropTypes.string),
   dispatch: PropTypes.func.isRequired,
-  submitAPI: PropTypes.func.isRequired,
+  submitForm: PropTypes.func.isRequired,
 };
 
 export default BookingForm;

@@ -1,9 +1,12 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import Hero from "./Hero";
 import Specials from "./Specials";
 import Testimonials from "./Testimonials";
 import About from "./About";
-import BookingForm from "./BookingForm";
+import { useNavigate } from "react-router-dom";
+
+// Declare fetchAPI and submitAPI as global variables to satisfy ESLint
+/* global fetchAPI, submitAPI */
 
 // Initialize available times for today's date
 const initializeTimes = async () => {
@@ -19,6 +22,8 @@ const updateTimes = (state, action) => {
       const selectedDate = new Date(action.payload); // Get the selected date
       const availableTimes = fetchAPI(selectedDate); // Fetch available times
       return availableTimes; // Return the fetched times
+    case "REMOVE_TIME":
+      return state.filter((time) => time !== action.payload); // Remove the reserved time
     default:
       return state;
   }
@@ -26,6 +31,8 @@ const updateTimes = (state, action) => {
 
 const Main = () => {
   const [availableTimes, dispatch] = useReducer(updateTimes, []);
+  const [reservedTimes, setReservedTimes] = useState([]); // Track reserved times
+  const navigate = useNavigate();
 
   // Initialize available times when the component mounts
   useEffect(() => {
@@ -42,7 +49,6 @@ const Main = () => {
       <Specials />
       <Testimonials />
       <About />
-      <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitAPI={submitAPI} />
     </main>
   );
 };
