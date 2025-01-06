@@ -93,21 +93,13 @@ function App() {
       <Header />
       <Routes>
         {/* Home page route */}
-        <Route path="/" element={<><Main /><Footer /></>} />
+        <Route path="/" element={<Main />} />
 
         {/* Reservations route */}
-        <Route
-          path="/reservation"
-          element={
-            <>
-              <BookingFormWrapper />
-              <Footer />
-            </>
-          }
-        />
+        <Route path="/reservation" element={<BookingFormWrapper />}/>
 
         {/* Booking confirmation route */}
-        <Route path="/booking-confirmed" element={<><ConfirmedBooking /><Footer /></>} />
+        <Route path="/booking-confirmed" element={<ConfirmedBooking />} />
 
         {/* Other routes */}
         <Route path="/about" element={<></>} />
@@ -115,6 +107,7 @@ function App() {
         <Route path="/order-online" element={<></>} />
         <Route path="/login" element={<></>} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

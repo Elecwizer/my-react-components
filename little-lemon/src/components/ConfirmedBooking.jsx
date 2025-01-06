@@ -6,8 +6,8 @@ function ConfirmedBooking() {
 
   return (
     <section className="confirmed-booking">
-      <h2>Booking Confirmed!</h2>
-      <p>Your reservation has been successfully booked. We look forward to seeing you!</p>
+      <h1>Booking Confirmed!</h1>
+      <h2>Your reservation has been successfully booked. We look forward to seeing you!</h2>
       <button onClick={() => navigate('/')}>Return to Home</button>
     </section>
   );
