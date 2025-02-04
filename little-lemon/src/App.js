@@ -4,6 +4,9 @@ import Footer from './components/Footer';
 import Main from './components/Main';
 import BookingForm from './components/BookingForm';
 import ConfirmedBooking from './components/ConfirmedBooking';
+import Specials from "./components/Specials";
+import Hero from "./components/Hero";
+import About from "./components/About";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom"; // Add useNavigate here
 
 // Declare fetchAPI and submitAPI as global variables to satisfy ESLint
@@ -92,20 +95,17 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        {/* Home page route */}
         <Route path="/" element={<Main />} />
 
-        {/* Reservations route */}
         <Route path="/reservation" element={<BookingFormWrapper />}/>
 
-        {/* Booking confirmation route */}
         <Route path="/booking-confirmed" element={<ConfirmedBooking />} />
 
-        {/* Other routes */}
-        <Route path="/about" element={<></>} />
-        <Route path="/menu" element={<></>} />
-        <Route path="/order-online" element={<></>} />
-        <Route path="/login" element={<></>} />
+        <Route path="/about" element={<About/>} />
+
+        <Route path="/menu" element={<Specials/>} />
+
+        <Route path="/order-online" element={<Hero/>} />
       </Routes>
       <Footer />
     </Router>

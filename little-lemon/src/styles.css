@@ -531,8 +531,8 @@ footer {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%; /* Make it span the full width */
-    max-width: 1200px; /* Allow for larger screens to use more space */
-    margin: 80px auto;
+    max-width: 100%; /* Allow for larger screens to use more space */
+    margin: 100px auto;
     position: relative;
     box-sizing: border-box;
 }
